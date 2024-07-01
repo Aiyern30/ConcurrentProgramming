@@ -1,0 +1,42 @@
+
+
+    // private static final int TOTAL_PARKING_LOTS = 2000;
+    // private static int availableParkingLots = TOTAL_PARKING_LOTS;
+
+    // private String gateName;
+
+    // public Carpark(String gateName) {
+    //     this.gateName = gateName;
+    // }
+
+    // public static synchronized boolean enterGate() {
+    //     if (availableParkingLots > 0) {
+    //         availableParkingLots--;
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // }
+
+    // public static synchronized int getAvailableParkingLots() {
+    //     return availableParkingLots;
+    // }
+
+    // @Override
+    // public void run() {
+    //     int carEntered = 0;
+    //     while (carEntered < 200) {
+    //         if (enterGate()) {
+    //             carEntered++;
+    //             System.out.println(gateName + ": Car entered. Available slots: " + getAvailableParkingLots());
+    //             try {
+    //                 Thread.sleep((int) (Math.random() * 100));
+    //             } catch (InterruptedException e) {
+    //                 e.printStackTrace();
+    //             }
+    //         } else {
+    //             System.out.println(gateName + ": No more parking lots available.");
+    //             break;
+    //         }
+    //     }
+    // }
