@@ -43,7 +43,7 @@ public class AirTrafficControl extends Thread {
 
         long currentTime = System.currentTimeMillis();
         int waitingTime = (int) (currentTime - flight.getArrivalTime());
-        Statistics.totalWaitingTime.getAndAdd(waitingTime);
+        Statistics.recordWaitingTime(waitingTime); // Record waiting time here
 
         System.out.println("ATC: Flight " + flight.getId() + " requesting runway.");
         runwaySemaphore.acquire();
@@ -88,6 +88,10 @@ public class AirTrafficControl extends Thread {
         flight.setStatus("Waiting");
 
         flight.setArrivalTime(System.currentTimeMillis());
+        if (gateSemaphore.availablePermits() > 0 && runwaySemaphore.availablePermits() > 0) {
+            // If there's no waiting, set waiting time to 0
+            flight.setWaitingTime(0);
+        }
     }
 
     public void deployFuelService(Flight flight) {

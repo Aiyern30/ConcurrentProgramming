@@ -7,6 +7,7 @@ public class Flight implements Runnable {
     private String status;
     private long arrivalTime;
     private AirTrafficControl atc;
+    private int waitingTime;
 
     private int passengers;
     private Gate gate;
@@ -17,6 +18,14 @@ public class Flight implements Runnable {
         this.atc = atc;
         this.passengers = passengers;
         this.gate = null; // Initialize to null (indicating not docked yet)
+    }
+
+    public int getWaitingTime() {
+        return waitingTime;
+    }
+
+    public void setWaitingTime(int waitingTime) {
+        this.waitingTime = waitingTime;
     }
 
     public Gate getGate() {
@@ -148,21 +157,21 @@ public class Flight implements Runnable {
         }
         System.out.println("-------------------------------------------------------");
         System.out.println("Flight " + this.getId() + ": All passengers disembarked.");
-    
+
         // Cleaning
         Clean clean = new Clean(this);
         clean.start();
         clean.join();
-    
+
         // Refilling supplies
         Supplies supplies = new Supplies(this);
         supplies.start();
         supplies.join();
-    
+
         // Refueling
         System.out.println("Flight " + this.getId() + " requesting refueling.");
         this.getAtc().deployFuelService(this);
-    
+
         // Boarding new passengers
         System.out.println("\n-------------- Boarding passengers ---------------");
         this.setStatus("Boarding");
@@ -176,11 +185,10 @@ public class Flight implements Runnable {
         }
         System.out.println("-----------------------------------------------------");
         System.out.println("Flight " + this.getId() + ": All passengers boarded.");
-    
+
         // Prepare for departure
         this.setStatus("Depart");
     }
-        
 
     private void depart() throws InterruptedException {
         atc.requestToTakeoff(this);
