@@ -8,9 +8,9 @@ public class Supplies extends Thread {
 
     synchronized public void run() {
         try {
-            System.out.println("\n-------------- Supplies -----------------\nFlight "
+            System.out.println("\n----------------- Supplies -----------------\nFlight "
                     + flight.getId() + ": Refilling food and drinks for Flight " + flight.getId()
-                    + ". (5 seconds)\n--------------------------------------");
+                    + "\n--------------------------------------------");
 
             Thread.sleep(5000);
         } catch (InterruptedException ex) {

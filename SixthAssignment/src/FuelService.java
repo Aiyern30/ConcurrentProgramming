@@ -7,8 +7,8 @@ public class FuelService {
     public void refuelAircraft(Flight flight) {
         try {
             FuelService.acquire();
-            System.out.println("Refueling in progress for Flight " + flight.getId()
-                    + ". (5 seconds)");
+            System.out
+                    .println(Thread.currentThread().getName() + ": Refueling in progress for Flight " + flight.getId());
             Thread.sleep(5000);
             System.out.println("Refueling complete for Flight " + flight.getId());
         } catch (InterruptedException e) {

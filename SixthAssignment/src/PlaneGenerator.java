@@ -16,10 +16,10 @@ public class PlaneGenerator extends Thread {
             int choice = random.nextInt(2);
 
             if (choice == 0) {
-                System.out.println("----- Normal airplane simulation -----");
+                System.out.println(Thread.currentThread().getName() + ": Normal airplane simulation.");
                 generateNormalScenario(totalPlanes);
             } else {
-                System.out.println("----- Congestion scenario with emergency -----");
+                System.out.println(Thread.currentThread().getName() + ": Congestion scenario with emergency.");
                 generateCongestionScenario(totalPlanes);
             }
 

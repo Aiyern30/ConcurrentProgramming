@@ -27,7 +27,7 @@ public class AirTrafficControl extends Thread {
 
     @Override
     public void run() {
-        System.out.println("Air Traffic Control: Online and operational.");
+        System.out.println(Thread.currentThread().getName() + ": Air Traffic Control is online and operational.");
     }
 
     public void requestToLand() throws InterruptedException {
@@ -78,8 +78,8 @@ public class AirTrafficControl extends Thread {
 
     public synchronized void addFlight(Flight flight) throws InterruptedException {
         if (flight.isUrgent()) {
-            System.out.println("\n --------- EMERGENCY --------- \nATC: Flight "
-                    + flight.getId() + " REQUESTS EMERGENCY LANDING!!!\n----------------------------");
+            System.out.println("\n--------- EMERGENCY --------- \nATC: Flight "
+                    + flight.getId() + " REQUESTS EMERGENCY LANDING!!!\n-------------------------");
             waitingFlights.offerFirst(flight);
         } else {
             waitingFlights.offer(flight);
@@ -105,7 +105,7 @@ public class AirTrafficControl extends Thread {
                 return gate;
             }
         }
-        return null; // This should not happen since we check for availability before calling
+        return null;
     }
 
     public void releaseGate(Gate gate) {
