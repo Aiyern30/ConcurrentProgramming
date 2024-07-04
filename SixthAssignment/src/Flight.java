@@ -147,7 +147,7 @@ public class Flight implements Runnable {
         atc.runwaySemaphore.release();
     }
 
-    private void operateAirport() throws InterruptedException {
+    private synchronized  void operateAirport() throws InterruptedException {
         // Disembarking passengers
         System.out.println("\n-------------- Disembark passengers ---------------");
         this.setStatus("Docked");
