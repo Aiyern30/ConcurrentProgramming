@@ -1,0 +1,42 @@
+public class Passenger extends Thread {
+    int id;
+    Flight flight;
+
+    public Passenger(int id, Flight flight) {
+        this.id = id;
+        this.flight = flight;
+    }
+
+    @Override
+    public void run() {
+        if (flight.getStatus().equals("Docked")) {
+            disembark();
+        } else {
+            embark();
+        }
+    }
+
+    synchronized public void embark() {
+        System.out.println("Boarding " + getOrdinal(id) + " passenger for Flight " + flight.getId() + ".");
+        Statistics.passengersEmbarked.getAndIncrement();
+        Statistics.passengerCount(1);
+    }
+
+    synchronized public void disembark() {
+        System.out.println("Disembarking " + getOrdinal(id) + " passenger from Flight " + flight.getId() + ".");
+        Statistics.passengersDisembarked.getAndIncrement();
+        Statistics.passengerCount(-1);
+    }
+
+    private String getOrdinal(int number) {
+        if (number % 100 >= 11 && number % 100 <= 13) {
+            return number + "th";
+        }
+        return switch (number % 10) {
+            case 1 -> number + "st";
+            case 2 -> number + "nd";
+            case 3 -> number + "rd";
+            default -> number + "th";
+        };
+    }
+}
