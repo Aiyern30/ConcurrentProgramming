@@ -120,9 +120,9 @@ public class Flight implements Runnable {
             atc.addFlight(this);
 
             if (this.isUrgent()) {
-                System.out.println("ATC: Emergency landing requested for Flight " + this.getId() + ".");
+                System.out.println( Thread.currentThread().getName() + ": Emergency landing requested for Flight " + this.getId() + ".");
             } else {
-                System.out.println("ATC: Flight " + this.getId() + " queued for landing.");
+                System.out.println( Thread.currentThread().getName() + ": Flight " + this.getId() + " queued for landing.");
             }
 
             atc.requestToLand();
