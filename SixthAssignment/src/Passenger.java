@@ -7,6 +7,7 @@ public class Passenger extends Thread {
         this.flight = flight;
     }
 
+    @Override
     public void run() {
         if (flight.getStatus().equals("Docked")) {
             disembark();

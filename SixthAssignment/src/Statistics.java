@@ -1,6 +1,6 @@
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Statistics {
     public static AtomicInteger totalWaitingTime = new AtomicInteger(0);
@@ -9,7 +9,7 @@ public class Statistics {
     public static AtomicInteger planesServed = new AtomicInteger(0);
     public static AtomicInteger totalPassengers = new AtomicInteger(0);
 
-    private static List<Integer> waitingTimes = new ArrayList<>();
+    private static final List<Integer> waitingTimes = new ArrayList<>();
 
     public static void recordWaitingTime(int waitingTime) {
         waitingTimes.add(waitingTime);

@@ -113,7 +113,7 @@ public class Flight implements Runnable {
     }
 
     private void requestLanding() throws InterruptedException {
-        System.out.println("ATC: Flight " + this.getId() + " requesting landing.");
+        System.out.println("Flight " + this.getId() + " requesting landing.");
         Thread.sleep(1000);
 
         synchronized (atc) {
