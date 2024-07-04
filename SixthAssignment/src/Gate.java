@@ -1,5 +1,5 @@
 public class Gate {
-    private int id;
+    private final int id;
     private boolean occupied;
 
     public Gate(int id) {

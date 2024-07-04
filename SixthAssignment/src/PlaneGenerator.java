@@ -1,8 +1,8 @@
 import java.util.Random;
 
 public class PlaneGenerator extends Thread {
-    private AirTrafficControl atc;
-    private Random random;
+    private final AirTrafficControl atc;
+    private final Random random;
 
     public PlaneGenerator(AirTrafficControl atc) {
         this.atc = atc;
