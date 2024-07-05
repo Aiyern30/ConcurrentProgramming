@@ -64,7 +64,7 @@ public class PlaneGenerator extends Thread {
         // Generate the fifth plane as an emergency flight
         int passengers = random.nextInt((50 - 20) + 1) + 20;
         totalPlanes++;
-        Flight emergencyFlight = new Flight(totalPlanes, true, atc, passengers); 
+        Flight emergencyFlight = new Flight(totalPlanes, true, atc, passengers);
         Thread emergencyThread = new Thread(emergencyFlight);
         emergencyThread.start();
         Thread.sleep(1000);

@@ -120,9 +120,11 @@ public class Flight implements Runnable {
             atc.addFlight(this);
 
             if (this.isUrgent()) {
-                System.out.println( Thread.currentThread().getName() + ": Emergency landing requested for Flight " + this.getId() + ".");
+                System.out.println(Thread.currentThread().getName() + ": Emergency landing requested for Flight "
+                        + this.getId() + ".");
             } else {
-                System.out.println( Thread.currentThread().getName() + ": Flight " + this.getId() + " queued for landing.");
+                System.out.println(
+                        Thread.currentThread().getName() + ": Flight " + this.getId() + " queued for landing.");
             }
 
             atc.requestToLand();
@@ -152,7 +154,7 @@ public class Flight implements Runnable {
         }
     }
 
-    private synchronized  void operateAirport() throws InterruptedException {
+    private synchronized void operateAirport() throws InterruptedException {
         // Disembarking passengers
         System.out.println("\n-------------- Disembark passengers ---------------");
         this.setStatus("Docked");

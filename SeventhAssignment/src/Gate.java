@@ -10,7 +10,6 @@ public class Gate extends Thread {
     public int getGateId() {
         return id;
     }
-    
 
     public boolean isOccupied() {
         return occupied;

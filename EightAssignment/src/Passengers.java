@@ -1,8 +1,8 @@
-public class Passenger extends Thread {
+public class Passengers extends Thread {
     int id;
     Flight flight;
 
-    public Passenger(int id, Flight flight) {
+    public Passengers(int id, Flight flight) {
         this.id = id;
         this.flight = flight;
     }

@@ -1,8 +1,8 @@
 import java.util.Random;
 
 public class PlaneGenerator extends Thread {
-    private final AirTrafficControl atc;
-    private final Random random;
+    private AirTrafficControl atc;
+    private Random random;
 
     public PlaneGenerator(AirTrafficControl atc) {
         this.atc = atc;
@@ -32,9 +32,8 @@ public class PlaneGenerator extends Thread {
         // Generate 6 random planes
         for (int i = 0; i < 6; i++) {
             int passengers = random.nextInt((50 - 20) + 1) + 20;
-            int priority = random.nextInt(100); // Assign random priority
             totalPlanes++;
-            Flight flight = new Flight(totalPlanes, false, atc, passengers, priority);
+            Flight flight = new Flight(totalPlanes, false, atc, passengers);
             Thread thread = new Thread(flight);
             thread.start();
             Thread.sleep(1000);
@@ -45,9 +44,8 @@ public class PlaneGenerator extends Thread {
         // Generate the first 2 planes to occupy gates
         for (int i = 0; i < 2; i++) {
             int passengers = random.nextInt((50 - 20) + 1) + 20;
-            int priority = random.nextInt(100); // Assign random priority
             totalPlanes++;
-            Flight flight = new Flight(totalPlanes, false, atc, passengers, priority);
+            Flight flight = new Flight(totalPlanes, false, atc, passengers);
             Thread thread = new Thread(flight);
             thread.start();
             Thread.sleep(1000);
@@ -56,29 +54,26 @@ public class PlaneGenerator extends Thread {
         // Generate the next 2 planes to wait in queue
         for (int i = 0; i < 2; i++) {
             int passengers = random.nextInt((50 - 20) + 1) + 20;
-            int priority = random.nextInt(100); // Assign random priority
             totalPlanes++;
-            Flight flight = new Flight(totalPlanes, false, atc, passengers, priority);
+            Flight flight = new Flight(totalPlanes, false, atc, passengers);
             Thread thread = new Thread(flight);
             thread.start();
             Thread.sleep(1000);
         }
 
-        // Generate the fifth plane as an emergency flight
+        // Generate the 3rd plane with an emergency landing requirement
         int passengers = random.nextInt((50 - 20) + 1) + 20;
-        int priority = 100; // High priority for emergency flight
         totalPlanes++;
-        Flight emergencyFlight = new Flight(totalPlanes, true, atc, passengers, priority);
+        Flight emergencyFlight = new Flight(totalPlanes, true, atc, passengers); // Mark as urgent
         Thread emergencyThread = new Thread(emergencyFlight);
         emergencyThread.start();
-        Thread.sleep(1000);
 
-        // Generate the sixth plane as a regular flight
+        // Generate one more plane to wait in queue
         passengers = random.nextInt((50 - 20) + 1) + 20;
-        priority = random.nextInt(100); // Assign random priority
         totalPlanes++;
-        Flight additionalFlight = new Flight(totalPlanes, false, atc, passengers, priority);
+        Flight additionalFlight = new Flight(totalPlanes, false, atc, passengers);
         Thread additionalThread = new Thread(additionalFlight);
         additionalThread.start();
     }
+
 }
