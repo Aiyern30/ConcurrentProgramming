@@ -6,6 +6,7 @@ public class Supplies extends Thread {
         this.flight = flight;
     }
 
+    @Override
     synchronized public void run() {
         try {
             System.out.println("\n----------------- Supplies -----------------\nFlight "
